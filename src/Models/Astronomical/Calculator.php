@@ -37,7 +37,7 @@ class Calculator
     /**
      * Get Gregorian Date from Hijri Date
      * @param string $d Hijri date string in the format dd-mm-yyyy
-     * @return void
+     * @return DateTime
      */
     public function hToG(string $d): DateTime
     {

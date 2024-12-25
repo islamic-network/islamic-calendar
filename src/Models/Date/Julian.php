@@ -77,7 +77,7 @@ class Julian
 
     }
 
-    public function toHijriMathematical()
+    public function toHijriMathematical(): Types\Hijri\Date
     {
         $l = $this->date - 1948440 + 10632;
         $n = Helpers\Date::intPart(($l - 1) / 10631);

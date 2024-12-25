@@ -5,7 +5,6 @@ use IslamicNetwork\Calendar\Models\Astronomical\Diyanet;
 use IslamicNetwork\Calendar\Types\Hijri\Date;
 use PHPUnit\Framework\TestCase;
 
-
 class DiyanetTest extends TestCase
 {
 
@@ -31,6 +30,4 @@ class DiyanetTest extends TestCase
         $this->assertEquals($y->format('d'), 14);
 
     }
-
-
 }

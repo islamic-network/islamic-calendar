@@ -6,7 +6,6 @@ use IslamicNetwork\Calendar\Models\Mathematical\Calculator;
 use IslamicNetwork\Calendar\Types\Hijri\Date;
 use PHPUnit\Framework\TestCase;
 
-
 class MathematicalTest extends TestCase
 {
 
@@ -32,6 +31,4 @@ class MathematicalTest extends TestCase
         $this->assertEquals($y->format('d'), 14);
 
     }
-
-
 }

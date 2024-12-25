@@ -12,7 +12,6 @@ class Gregorian
      */
     private DateTime $date;
 
-
     public function __construct(DateTime $date)
     {
         $this->date = $date;

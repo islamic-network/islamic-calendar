@@ -5,7 +5,6 @@ use IslamicNetwork\Calendar\Models\Astronomical\UmmAlQura;
 use IslamicNetwork\Calendar\Types\Hijri\Date;
 use PHPUnit\Framework\TestCase;
 
-
 class UmmAlQuraTest extends TestCase
 {
 
@@ -31,6 +30,4 @@ class UmmAlQuraTest extends TestCase
         $this->assertEquals($y->format('d'), 14);
 
     }
-
-
 }

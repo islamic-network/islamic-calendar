@@ -1,8 +1,7 @@
 <?php
 
 
-namespace IslamicNetwork\IslamicCalendar\Helpers;
-
+namespace IslamicNetwork\Calendar\Helpers;
 
 class Calendar
 {
@@ -63,7 +62,7 @@ class Calendar
         }
     }
 
-    public static function getGregorianMonths()
+    public static function getGregorianMonths(): array
     {
         return [
             1 => ['number' => 1, 'en' => 'January'],
@@ -81,7 +80,7 @@ class Calendar
         ];
     }
 
-    public static function getIslamicMonths()
+    public static function getIslamicMonths(): array
     {
         return [
             1 => ['number' => 1, 'en' => 'Muḥarram', 'ar' => 'مُحَرَّم'],

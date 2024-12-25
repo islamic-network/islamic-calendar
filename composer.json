@@ -4,7 +4,12 @@
     },
     "autoload": {
         "psr-4": {
-            "IslamicNetwork\\IslamicCalendar\\": "src/"
+            "IslamicNetwork\\Calendar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IslamicNetwork\\Calendar\\Tests": "tests/"
         }
     }
 }

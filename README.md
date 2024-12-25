@@ -19,7 +19,7 @@ Both the Umm Al Qura and Diyanet calendars are based on the work Robert Harry va
 ## Installation
 
 ```
-compoer require 
+composer require 
 ```
 
 ## License

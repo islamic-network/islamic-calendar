@@ -68,17 +68,13 @@ $h = $diyanet->gToH('14-02-2025');
  */
 $g = $diyanet->hToG('15-08-1446');
 
-// This is the method used in the AlAdhan API prior to 2025
-$mathematical = new Calculator();
-/**
-* @var $hijriDate \IslamicNetwork\Calendar\Types\Hijri\Date
- */
-$h = $mathematical->gToH('14-02-2025');
+// Access the typed hijri date object.
+$h->day->number;
+$h->month->number;
 
-/**
-* @var $g DateTime
- */
-$g = $mathematical->hToG('15-08-1446');
+// And the standard DateTime object for the gregorian date
+$g->format('Y-m-d');
+
 ```
 
 ### Mathematical
@@ -99,6 +95,13 @@ $h = $mathematical->gToH('14-02-2025');
 * @var $g DateTime
  */
 $g = $mathematical->hToG('15-08-1446');
+
+// Access the typed hijri date object.
+$h->day->number;
+$h->month->number;
+
+// And the standard DateTime object for the gregorian date
+$g->format('Y-m-d');
 ```
 
 ## Run Unit Tests

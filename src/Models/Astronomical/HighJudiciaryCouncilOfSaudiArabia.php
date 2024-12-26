@@ -69,7 +69,7 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
             $gd = new Gregorian($d);
             $jd = new Julian($gd->toJulian());
 
-            return $jd->toHijri($this->data, $this->lunations);
+            return $jd->toHijri($this->data, $this->lunations, $this->id);
         }
 
         return $adjusted;
@@ -108,9 +108,9 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
             $refHijriDateForMonthDays = 7 . '-' . $hd[1] . '-' . $hd[2];
             $h = new Hijri($refHijriDateForMonthDays);
             $jd = new Julian($h->toJulian());
-            $refH = $jd->toHijri($this->data, $this->lunations);
+            $refH = $jd->toHijri($this->data, $this->lunations, $this->id);
 
-            return Date::hijriFormatted($hd[0], $hd[1], $hd[2], $refH->month->days, $d);
+            return Date::hijriFormatted($hd[0], $hd[1], $hd[2], $refH->month->days, $d, $this->id);
         }
 
         return null;

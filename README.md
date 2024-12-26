@@ -7,7 +7,7 @@ It will be replacing the current calculation in the API from January 1, 2025 onw
 
 ## Supported Methods
 
-This library supports the follwoing methods for calculating the Hijri Date from a Gregorian Date:
+This library supports the following methods for calculating the Hijri Date from a Gregorian Date:
 
 * The existing mathematical method used on the aladhan.com API. *This is the only method that accepts an adjustment parameter.*
 * The **Umm Al Qura** astronomical calculation method. This method only works (as of this writing, as the data gets enhanced more years may be supported) from 1356 AH to 2077 AH.

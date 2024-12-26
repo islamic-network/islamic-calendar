@@ -3,6 +3,8 @@
 namespace IslamicNetwork\Calendar\Helpers;
 
 use DateTime;
+use IslamicNetwork\Calendar\Types;
+
 class Date
 {
 
@@ -70,6 +72,16 @@ class Date
         }
 
         return floor($floatNum+0.0000001);
+    }
+
+    public static function hijriFormatted(int $day, int $month, int $year, int $monthLength, DateTime $gregorianDate): Types\Hijri\Date
+    {
+        $mx = Calendar::getIslamicMonths()[$month];
+        $hwd = Calendar::hijriWeekdays($gregorianDate->format('l'));
+        $hijriMonth = new Types\Hijri\Month($mx['number'], $mx['en'], $mx['ar'], $monthLength);
+        $hijriDay = new Types\Hijri\Day($day, $hwd['en'], $hwd['ar']);
+
+        return new Types\Hijri\Date($hijriDay, $hijriMonth, $year, Calendar::getHijriHolidays($day, $month));
     }
 
 }

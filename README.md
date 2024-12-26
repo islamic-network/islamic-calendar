@@ -9,8 +9,9 @@ It will be replacing the current calculation in the API from January 1, 2025 onw
 
 This library supports the follwoing methods for calculating the Hijri Date from a Gregorian Date:
 
-* The existing mathematical method used on the aladhan.com API
+* The existing mathematical method used on the aladhan.com API. *This is the only method that accepts an adjustment parameter.*
 * The **Umm Al Qura** astronomical calculation method. This method only works (as of this writing, as the data gets enhanced more years may be supported) from 1356 AH to 2077 AH).
+* The **High Judiciary Council of Saudi Arabia** calulcation method. This method is based on the Umm al-Qura calendar, but the dates for the months of Muḥarram, Ramaḍān, Shawwāl and Dhu ʾl-Ḥijja are adjusted after reported sightings of the lunar crescent announced by the Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia). Please also see https://webspace.science.uu.nl/~gent0113/islam/ummalqura_adjust.htm for more details.
 * The **Diyanet astronomical** calculation method. This method only works (as of this writing, as the data gets enhanced more years may be supported) from 1318 AH to 1449 AH).
 
 ### Method Credits
@@ -27,8 +28,6 @@ Instantiate the Appropriate class for the method you are interested in.
 
 ### Umm al Qura
 
-This will become the default method in the AlAdhan API in 2025.
-
 ```php
 use IslamicNetwork\Calendar\Models\Astronomical\UmmAlQura;
 
@@ -43,6 +42,34 @@ $h = $uaq->gToH('14-02-2025');
 * @var $g DateTime
  */
 $g = $uaq->hToG('15-08-1446');
+
+// Access the typed hijri date object.
+$h->day->number;
+$h->month->number;
+
+// And the standard DateTime object for the gregorian date
+$g->format('Y-m-d');
+
+```
+
+### High Judiciary Council of Saudi Arabia
+
+**This will become the default method in the AlAdhan API in 2025.**
+
+```php
+use IslamicNetwork\Calendar\Models\Astronomical\HighJudiciaryCouncilOfSaudiArabia;
+
+// This will become the default method in the AlAdhan API in 2025
+$hjcosa = new \IslamicNetwork\Calendar\Models\Astronomical\HighJudiciaryCouncilOfSaudiArabia();
+/**
+* @var $hijriDate \IslamicNetwork\Calendar\Types\Hijri\Date
+ */
+$h = $hjcosa->gToH('14-02-2025');
+
+/**
+* @var $g DateTime
+ */
+$g = $hjcosa->hToG('15-08-1446');
 
 // Access the typed hijri date object.
 $h->day->number;
@@ -90,6 +117,8 @@ $mathematical = new Calculator();
 * @var $hijriDate \IslamicNetwork\Calendar\Types\Hijri\Date
  */
 $h = $mathematical->gToH('14-02-2025');
+// OR 
+$h = $mathematical->gToH('14-02-2025', 1); // to adjust the resulting hijri date forward by 1 day
 
 /**
 * @var $g DateTime

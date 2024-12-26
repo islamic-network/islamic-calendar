@@ -16,7 +16,18 @@ class Calculator
      */
     protected array $data;
 
+    /**
+     * @var int
+     */
     protected int $lunations;
+
+    public string $id;
+
+    public string $name;
+
+    public string $description;
+
+    public string $validityPeriod;
 
     /**
      * Get Hijri Date from Gregorian Date

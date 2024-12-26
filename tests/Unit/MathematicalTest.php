@@ -22,13 +22,35 @@ class MathematicalTest extends TestCase
         $this->assertEquals($y->month->en, 'Shaʿbān');
     }
 
+    public function testGtoHAdjusted()
+    {
+        $x = new Calculator();
+        $y = $x->gToH('14-02-2025', 1);
+        $this->assertInstanceOf(Date::class, $y);
+        $this->assertEquals($y->year, 1446);
+        $this->assertEquals($y->day->number, 16);
+        $this->assertEquals($y->day->en, 'Al Juma\'a');
+        $this->assertEquals($y->month->number, 8);
+        $this->assertEquals($y->month->days, 30);
+        $this->assertEquals($y->month->en, 'Shaʿbān');
+    }
+
     public function testHtoG()
     {
-        $x = new Diyanet();
+        $x = new Calculator();
         $y = $x->hToG('15-08-1446');
         $this->assertEquals($y->format('Y'), 2025);
         $this->assertEquals($y->format('m'), 2);
         $this->assertEquals($y->format('d'), 14);
+    }
+
+    public function testHtoGAdjusted()
+    {
+        $x = new Calculator();
+        $y = $x->hToG('15-08-1446', -1);
+        $this->assertEquals($y->format('Y'), 2025);
+        $this->assertEquals($y->format('m'), 2);
+        $this->assertEquals($y->format('d'), 13);
 
     }
 }

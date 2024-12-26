@@ -4,8 +4,6 @@ namespace IslamicNetwork\Calendar\Models\Date;
 
 use DateTime;
 use IslamicNetwork\Calendar\Helpers;
-use IslamicNetwork\Calendar\Types\Hijri\Day;
-use IslamicNetwork\Calendar\Types\Hijri\Month;
 use IslamicNetwork\Calendar\Types;
 
 class Julian
@@ -68,32 +66,28 @@ class Julian
         $id = $mcjdn - $data[$i - 1] + 1;
         $ml = $data[$i] - $data[$i - 1];
         //$ilunnum = $iln;
-        $mx = Helpers\Calendar::getIslamicMonths()[$im];
-        $hwd = Helpers\Calendar::hijriWeekdays($this->toGregorian()->format('l'));
-        $hijriMonth = new Month($mx['number'], $mx['en'], $mx['ar'], $ml);
-        $hijriDay = new Day($id, $hwd['en'], $hwd['ar']);
 
-        return new Types\Hijri\Date($hijriDay, $hijriMonth, $iy, Helpers\Calendar::getHijriHolidays($id, $im));
-
+        return Helpers\Date::hijriFormatted($id, $im, $iy, $ml, $this->toGregorian());
     }
 
-    public function toHijriMathematical(): Types\Hijri\Date
+    /**
+     * Mathematical Julian to Hijri Calculation
+     * @param int $adjustment +/- number of days from the Julian date before converting to Hijri
+     * @return Types\Hijri\Date
+     */
+    public function toHijriMathematical(int $adjustment = 0): Types\Hijri\Date
     {
-        $l = $this->date - 1948440 + 10632;
+        $l = $this->date + $adjustment - 1948440 + 10632;
         $n = Helpers\Date::intPart(($l - 1) / 10631);
-        $l = $l-10631 * $n + 354;
+        $l = $l - 10631 * $n + 354;
         $j = (Helpers\Date::intPart((10985 - $l) / 5316)) * (Helpers\Date::intPart((50 * $l) / 17719)) + (Helpers\Date::intPart($l / 5670)) * (Helpers\Date::intPart((43 * $l) / 15238));
-        $l = $l-(Helpers\Date::intPart((30 - $j) / 15)) * (Helpers\Date::intPart((17719 * $j) / 50))-(Helpers\Date::intPart($j / 16)) * (Helpers\Date::intPart((15238 * $j) / 43)) + 29;
+        $l = $l - (Helpers\Date::intPart((30 - $j) / 15)) * (Helpers\Date::intPart((17719 * $j) / 50))-(Helpers\Date::intPart($j / 16)) * (Helpers\Date::intPart((15238 * $j) / 43)) + 29;
         $m = Helpers\Date::intPart((24 * $l) / 709);
-        $d = $l-Helpers\Date::intPart((709 * $m) / 24);
+        $d = $l - Helpers\Date::intPart((709 * $m) / 24);
         $y = 30 * $n + $j-30;
 
-        $mx = Helpers\Calendar::getIslamicMonths()[$m];
-        $hwd = Helpers\Calendar::hijriWeekdays($this->toGregorian()->format('l'));
-        $hijriMonth = new Month($mx['number'], $mx['en'], $mx['ar'], 30);
-        $hijriDay = new Day($d, $hwd['en'], $hwd['ar']);
+        return Helpers\Date::hijriFormatted($d, $m, $y, 30, $this->toGregorian());
 
-        return new Types\Hijri\Date($hijriDay, $hijriMonth, $y, Helpers\Calendar::getHijriHolidays($d, $m));
     }
 
 

@@ -24,10 +24,7 @@ class Hijri
         $d = (int) $d[0];
 
        return Helpers\Date::intPart((11 * $y + 3) / 30) + 354 * $y + 30 * $m - Helpers\Date::intPart(($m - 1) / 2) + $d + 1948440 - 385;
-
     }
-
-
 
 
 

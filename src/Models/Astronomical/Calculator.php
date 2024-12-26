@@ -41,7 +41,7 @@ class Calculator
         $gd = new Gregorian($d);
         $jd = new Julian($gd->toJulian());
 
-        return $jd->toHijri($this->data, $this->lunations);
+        return $jd->toHijri($this->data, $this->lunations, $this->id);
 
     }
 

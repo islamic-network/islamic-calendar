@@ -74,14 +74,14 @@ class Date
         return floor($floatNum+0.0000001);
     }
 
-    public static function hijriFormatted(int $day, int $month, int $year, int $monthLength, DateTime $gregorianDate): Types\Hijri\Date
+    public static function hijriFormatted(int $day, int $month, int $year, int $monthLength, DateTime $gregorianDate, string $method): Types\Hijri\Date
     {
         $mx = Calendar::getIslamicMonths()[$month];
         $hwd = Calendar::hijriWeekdays($gregorianDate->format('l'));
         $hijriMonth = new Types\Hijri\Month($mx['number'], $mx['en'], $mx['ar'], $monthLength);
         $hijriDay = new Types\Hijri\Day($day, $hwd['en'], $hwd['ar']);
 
-        return new Types\Hijri\Date($hijriDay, $hijriMonth, $year, Calendar::getHijriHolidays($day, $month));
+        return new Types\Hijri\Date($hijriDay, $hijriMonth, $year, $method, Calendar::getHijriHolidays($day, $month));
     }
 
 }

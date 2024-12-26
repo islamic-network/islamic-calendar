@@ -47,7 +47,7 @@ class Julian
      * @param int $lunations The lunation number to add to the data for the method
      * @return Types\Hijri\Date
      */
-    public function toHijri(array $data, int $lunations): Types\Hijri\Date
+    public function toHijri(array $data, int $lunations, string $method): Types\Hijri\Date
     {
         $mcjdn = Helpers\Date::modifiedJulianDate($this->date);
 
@@ -67,7 +67,7 @@ class Julian
         $ml = $data[$i] - $data[$i - 1];
         //$ilunnum = $iln;
 
-        return Helpers\Date::hijriFormatted($id, $im, $iy, $ml, $this->toGregorian());
+        return Helpers\Date::hijriFormatted($id, $im, $iy, $ml, $this->toGregorian(), $method);
     }
 
     /**
@@ -86,7 +86,7 @@ class Julian
         $d = $l - Helpers\Date::intPart((709 * $m) / 24);
         $y = 30 * $n + $j-30;
 
-        return Helpers\Date::hijriFormatted($d, $m, $y, 30, $this->toGregorian());
+        return Helpers\Date::hijriFormatted($d, $m, $y, 30, $this->toGregorian(), 'MATHEMATICAL');
 
     }
 

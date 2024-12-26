@@ -15,6 +15,7 @@ class Date
         $this->day = $day;
         $this->month = $month;
         $this->year = $year;
+        $this->method = $method;
         $this->holidays = $holidays;
     }
 }

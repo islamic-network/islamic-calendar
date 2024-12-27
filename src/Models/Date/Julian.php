@@ -4,6 +4,8 @@ namespace IslamicNetwork\Calendar\Models\Date;
 
 use DateTime;
 use IslamicNetwork\Calendar\Helpers;
+use IslamicNetwork\Calendar\Models\Mathematical\Calculator;
+use IslamicNetwork\Calendar\Tests\Unit\MathematicalTest;
 use IslamicNetwork\Calendar\Types;
 
 class Julian
@@ -86,7 +88,7 @@ class Julian
         $d = $l - Helpers\Date::intPart((709 * $m) / 24);
         $y = 30 * $n + $j-30;
 
-        return Helpers\Date::hijriFormatted($d, $m, $y, 30, $this->toGregorian(), 'MATHEMATICAL');
+        return Helpers\Date::hijriFormatted($d, $m, $y, 30, $this->toGregorian(), Calculator::ID);
 
     }
 

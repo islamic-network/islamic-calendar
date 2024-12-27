@@ -12,6 +12,11 @@ use DateTime;
 
 class HighJudiciaryCouncilOfSaudiArabia extends Calculator
 {
+    public const string ID = 'HJCoSA';
+    public const string NAME = 'Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia)';
+    public const string DESCRIPTION = 'This calendar is based on the Umm al-Qura calendar, but the dates for the months of Muḥarram, Ramaḍān, Shawwāl and Dhu ʾl-Ḥijja are adjusted after reported sightings of the lunar crescent announced by the Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia). Please also see https://webspace.science.uu.nl/~gent0113/islam/ummalqura_adjust.htm for more details.';
+    public const string VALIDITY_PERIOD = '1356 AH (14 March 1937 CE) to 1500 AH (16 November 2077 CE)';
+
     public array $adjustments = [
         // Gregorian => Announced Hijri Date. All days in dd-mm-yyyy
         '27-10-2003' => '01-09-1424',
@@ -48,10 +53,6 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
         $this->reverseAdjustments = array_flip($this->adjustments);
         $this->data = Astronomical::ummAlQura();
         $this->lunations = 16260;
-        $this->id = 'HJCoSA';
-        $this->name = 'Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia)';
-        $this->description ='This calendar is based on the Umm al-Qura calendar, but the dates for the months of Muḥarram, Ramaḍān, Shawwāl and Dhu ʾl-Ḥijja are adjusted after reported sightings of the lunar crescent announced by the Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia). Please also see https://webspace.science.uu.nl/~gent0113/islam/ummalqura_adjust.htm for more details.';
-        $this->validityPeriod = '1356 AH (14 March 1937 CE) to 1500 AH (16 November 2077 CE)';
     }
 
     /**
@@ -69,7 +70,7 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
             $gd = new Gregorian($d);
             $jd = new Julian($gd->toJulian());
 
-            return $jd->toHijri($this->data, $this->lunations, $this->id);
+            return $jd->toHijri($this->data, $this->lunations, self::ID);
         }
 
         return $adjusted;
@@ -108,9 +109,9 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
             $refHijriDateForMonthDays = 7 . '-' . $hd[1] . '-' . $hd[2];
             $h = new Hijri($refHijriDateForMonthDays);
             $jd = new Julian($h->toJulian());
-            $refH = $jd->toHijri($this->data, $this->lunations, $this->id);
+            $refH = $jd->toHijri($this->data, $this->lunations, self::ID);
 
-            return Date::hijriFormatted($hd[0], $hd[1], $hd[2], $refH->month->days, $d, $this->id);
+            return Date::hijriFormatted($hd[0], $hd[1], $hd[2], $refH->month->days, $d, self::ID);
         }
 
         return null;

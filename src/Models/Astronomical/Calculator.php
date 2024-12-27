@@ -21,14 +21,6 @@ class Calculator
      */
     protected int $lunations;
 
-    public string $id;
-
-    public string $name;
-
-    public string $description;
-
-    public string $validityPeriod;
-
     /**
      * Get Hijri Date from Gregorian Date
      * @param string $d Gregorian date string in the format dd-mm-yyyy
@@ -41,7 +33,7 @@ class Calculator
         $gd = new Gregorian($d);
         $jd = new Julian($gd->toJulian());
 
-        return $jd->toHijri($this->data, $this->lunations, $this->id);
+        return $jd->toHijri($this->data, $this->lunations, static::ID);
 
     }
 

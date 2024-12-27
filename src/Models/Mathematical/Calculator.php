@@ -10,15 +10,15 @@ use IslamicNetwork\Calendar\Types;
 
 class Calculator
 {
-    public string $id = 'MATHEMATICAL';
+    public const string ID = 'MATHEMATICAL';
 
-    public string $name = 'Mathematical calculator based on a calculation written by Layth A. Ibraheem';
+    public const string NAME = 'Mathematical calculator based on a calculation written by Layth A. Ibraheem';
 
-    public string $description = 'This has been the default calendar used by the AlAdhan API until January 2025. It is purely mathematical does not 
+    public const string DESCRIPTION = 'This has been the default calendar used by the AlAdhan API until January 2025. It is purely mathematical does not 
     keep track of the number of days in a month, so adjusting it to match the actual hilaal sightings is not possible. It still works if you are happy 
     wth some inconsistencies, but is no longer the default calendar. This calendar allows for adjustments.';
 
-    public string $validityPeriod = 'No restrictions';
+    public const string VALIDITY_PERIOD = 'No restrictions';
 
     /**
      * Get Hijri Date from Gregorian Date

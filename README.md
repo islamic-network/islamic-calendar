@@ -15,7 +15,9 @@ This library supports the following methods for calculating the Hijri Date from 
 * The **Diyanet astronomical** calculation method. This method only works (as of this writing, as the data gets enhanced more years may be supported) from 1318 AH to 1449 AH.
 
 ### Method Credits
-Both the Umm Al Qura and Diyanet calendars are based on the work Robert Harry van Gent at https://webspace.science.uu.nl/~gent0113/islam/ and Tariq Alomaireeni at https://github.com/talomaireeni/Umm-Al-Qura-Calendar/tree/master?tab=readme-ov-file.
+Both the Umm Al Qura and Diyanet calendars are based on the work of Robert Harry van Gent 
+at https://webspace.science.uu.nl/~gent0113/islam/ and inspired by the JS script written by 
+Tariq Alomaireeni at https://github.com/talomaireeni/Umm-Al-Qura-Calendar/tree/master?tab=readme-ov-file.
 
 ## Installation
 

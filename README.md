@@ -144,3 +144,8 @@ vendor/bin/phpunit tests/
 ## License
 Apache 2.0
 
+
+## To Do
+
+* Astronomical Methods - Hijri to Julian calculcation
+* Jalaali Calendar

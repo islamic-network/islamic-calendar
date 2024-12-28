@@ -2,20 +2,20 @@
 
 namespace IslamicNetwork\Calendar\Models\Astronomical;
 
+use DateTime;
 use IslamicNetwork\Calendar\Data\Astronomical;
 use IslamicNetwork\Calendar\Helpers\Date;
 use IslamicNetwork\Calendar\Models\Date\Gregorian;
 use IslamicNetwork\Calendar\Models\Date\Hijri;
 use IslamicNetwork\Calendar\Models\Date\Julian;
 use IslamicNetwork\Calendar\Types;
-use DateTime;
 
 class HighJudiciaryCouncilOfSaudiArabia extends Calculator
 {
-    public const string ID = 'HJCoSA';
-    public const string NAME = 'Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia)';
-    public const string DESCRIPTION = 'This calendar is based on the Umm al-Qura calendar, but the dates for the months of Muḥarram, Ramaḍān, Shawwāl and Dhu ʾl-Ḥijja are adjusted after reported sightings of the lunar crescent announced by the Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia). Please also see https://webspace.science.uu.nl/~gent0113/islam/ummalqura_adjust.htm for more details.';
-    public const string VALIDITY_PERIOD = '1356 AH (14 March 1937 CE) to 1500 AH (16 November 2077 CE)';
+    public const ID = 'HJCoSA';
+    public const NAME = 'Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia)';
+    public const DESCRIPTION = 'This calendar is based on the Umm al-Qura calendar, but the dates for the months of Muḥarram, Ramaḍān, Shawwāl and Dhu ʾl-Ḥijja are adjusted after reported sightings of the lunar crescent announced by the Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia). Please also see https://webspace.science.uu.nl/~gent0113/islam/ummalqura_adjust.htm for more details.';
+    public const VALIDITY_PERIOD = '1356 AH (14 March 1937 CE) to 1500 AH (16 November 2077 CE)';
 
     public array $adjustments = [
         // Gregorian => Announced Hijri Date. All days in dd-mm-yyyy

@@ -50,6 +50,11 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
 
     public function __construct()
     {
+        $this->validGregorianFrom = DateTime::createFromFormat('d-m-Y', '14-03-1937');
+        $this->validGregorianTo = DateTime::createFromFormat('d-m-Y', '16-11-2077');
+        // Hijri dates don't work with DateTime, but we are just using these here to size comparison.
+        $this->validHijriFrom = DateTime::createFromFormat('d-m-Y', '01-01-1356');
+        $this->validHijriTo = DateTime::createFromFormat('d-m-Y', '30-12-1500');
         $this->reverseAdjustments = array_flip($this->adjustments);
         $this->data = Astronomical::ummAlQura();
         $this->lunations = 16260;
@@ -59,10 +64,12 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
      * Get Hijri Date from Gregorian Date
      * @param string $d Gregorian date string in the format dd-mm-yyyy
      * @return Types\Hijri\Date
+     * @throws \Exception
      */
     public function gToH(string $d): Types\Hijri\Date
     {
         $d = DateTime::createFromFormat('d-m-Y', $d);
+        $this->verifyGregorianInputDate($d);
 
         $adjusted = $this->adjustGregorian($d);
 
@@ -80,9 +87,11 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
      * Get Gregorian Date from Hijri Date
      * @param string $d Hijri date string in the format dd-mm-yyyy
      * @return DateTime
+     * @throws \Exception
      */
     public function hToG(string $d): DateTime
     {
+        $this->verifyHijriInputDate($d);
         $adjusted = $this->adjustHijri($d);
 
         if ($adjusted === null) {

@@ -2,10 +2,9 @@
 namespace IslamicNetwork\Calendar\Tests\Unit;
 
 use IslamicNetwork\Calendar\Models\Astronomical\HighJudiciaryCouncilOfSaudiArabia;
-use IslamicNetwork\Calendar\Models\Astronomical\UmmAlQura;
-use IslamicNetwork\Calendar\Models\Date\Hijri;
 use IslamicNetwork\Calendar\Types\Hijri\Date;
 use PHPUnit\Framework\TestCase;
+use Exception;
 
 class HJDCoSATest extends TestCase
 {
@@ -30,6 +29,12 @@ class HJDCoSATest extends TestCase
         $this->assertEquals($y->month->number, 8);
         $this->assertEquals($y->month->days, 29);
         $this->assertEquals($y->month->en, 'Shaʿbān');
+
+        $this->expectException(Exception::class);
+        $y = $x->hToG('15-08-1155');
+
+        $this->expectException(Exception::class);
+        $y = $x->hToG('15-08-2236');
     }
 
     public function testGtoHOnAdjustedDate()
@@ -57,6 +62,12 @@ class HJDCoSATest extends TestCase
         $this->assertEquals($y->format('Y'), 2025);
         $this->assertEquals($y->format('m'), 2);
         $this->assertEquals($y->format('d'), 14);
+
+        $this->expectException(Exception::class);
+        $y = $x->hToG('15-08-1200');
+
+        $this->expectException(Exception::class);
+        $y = $x->hToG('15-08-1566');
 
     }
 

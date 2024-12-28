@@ -89,14 +89,14 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
      * @return DateTime
      * @throws \Exception
      */
-    public function hToG(string $d): DateTime
+    public function hToG(string $d, int $adjustJulian = 0): DateTime
     {
         $this->verifyHijriInputDate($d);
         $adjusted = $this->adjustHijri($d);
 
         if ($adjusted === null) {
             $hd = new Hijri($d);
-            $jd = new Julian($hd->toJulian());
+            $jd = new Julian($hd->toJulian($adjustJulian));
 
             return $jd->toGregorian();
         }

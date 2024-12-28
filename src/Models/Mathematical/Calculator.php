@@ -46,7 +46,7 @@ class Calculator
     public function hToG(string $d, int $adjustment = 0): DateTime
     {
         $hd = new Hijri($d);
-        $jd = new Julian($hd->toJulian() + $adjustment);
+        $jd = new Julian($hd->toJulian($adjustment));
 
         return $jd->toGregorian();
 

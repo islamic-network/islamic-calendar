@@ -86,11 +86,11 @@ class Calculator
      * @param string $d Hijri date string in the format dd-mm-yyyy
      * @return DateTime
      */
-    public function hToG(string $d): DateTime
+    public function hToG(string $d, int $adjustJulian = 0): DateTime
     {
         $this->verifyHijriInputDate($d);
         $hd = new Hijri($d);
-        $jd = new Julian($hd->toJulian());
+        $jd = new Julian($hd->toJulian($adjustJulian));
 
         return $jd->toGregorian();
 

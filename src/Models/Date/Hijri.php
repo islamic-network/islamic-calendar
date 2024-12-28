@@ -16,7 +16,7 @@ class Hijri
         $this->date = $date;
     }
 
-    public function toJulian(): float
+    public function toJulian(int $adjustJulian): float
     {
         $d = explode("-", $this->date);
         $y = (int) $d[2];
@@ -24,7 +24,7 @@ class Hijri
         $d = (int) $d[0];
 
         return (int) ((11 * $y + 3) / 30) + 354 * $y +
-            30 * $m - (int) (($m - 1) / 2) + $d + 1948440 - 385 - 1;
+            30 * $m - (int) (($m - 1) / 2) + $d + 1948440 - 385 + $adjustJulian;
     }
 
 

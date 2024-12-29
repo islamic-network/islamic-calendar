@@ -82,9 +82,10 @@ class Calculator
     }
 
     /**
-     * Get Gregorian Date from Hijri Date
-     * @param string $d Hijri date string in the format dd-mm-yyyy
-     * @return DateTime
+     * @param string $d
+     * @param int $adjustJulian
+     * @return DateTime Gregorian date
+     * @throws Exception
      */
     public function hToG(string $d, int $adjustJulian = 0): DateTime
     {

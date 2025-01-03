@@ -31,7 +31,7 @@ class Calculator
         $gd = new Gregorian($d);
         $jd = new Julian($gd->toJulian());
 
-        return $jd->toHijriMathematical($adjustment);
+        return $jd->toHijriMathematical($d, $adjustment);
 
     }
 

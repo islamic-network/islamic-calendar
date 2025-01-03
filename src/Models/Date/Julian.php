@@ -74,9 +74,10 @@ class Julian
     /**
      * Mathematical Julian to Hijri Calculation
      * @param int $adjustment +/- number of days from the Julian date before converting to Hijri
+     * @param DateTime $gd Original gregorian date used to create the Julian Date for this object's constructor
      * @return Types\Hijri\Date
      */
-    public function toHijriMathematical(int $adjustment = 0): Types\Hijri\Date
+    public function toHijriMathematical(DateTime $gd, int $adjustment = 0): Types\Hijri\Date
     {
         $l = $this->date + $adjustment - 1948440 + 10632;
         $n = Helpers\Date::intPart(($l - 1) / 10631);

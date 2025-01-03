@@ -20,7 +20,6 @@ class Date
         return $a - floor($a / 4.) - 2;
     }
 
-
     /**
      * @param float $julianDate
      * @return float
@@ -50,7 +49,6 @@ class Date
         $m -= 1;
         $y = $c - 4716;
     }
-
 
     /**
      * @param float $cjd Chronological Julian Date Number

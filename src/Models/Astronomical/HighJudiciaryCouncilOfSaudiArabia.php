@@ -4,6 +4,7 @@ namespace IslamicNetwork\Calendar\Models\Astronomical;
 
 use DateTime;
 use IslamicNetwork\Calendar\Data\Astronomical;
+use IslamicNetwork\Calendar\Helpers\Calendar;
 use IslamicNetwork\Calendar\Helpers\Date;
 use IslamicNetwork\Calendar\Models\Date\Gregorian;
 use IslamicNetwork\Calendar\Models\Date\Hijri;
@@ -17,31 +18,10 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
     public const DESCRIPTION = 'This calendar is based on the Umm al-Qura calendar, but the dates for the months of Muḥarram, Ramaḍān, Shawwāl and Dhu ʾl-Ḥijja are adjusted after reported sightings of the lunar crescent announced by the Majlis al-Qadāʾ al-Aʿlā (High Judiciary Council of Saudi Arabia). Please also see https://webspace.science.uu.nl/~gent0113/islam/ummalqura_adjust.htm for more details.';
     public const VALIDITY_PERIOD = '1356 AH (14 March 1937 CE) to 1500 AH (16 November 2077 CE)';
 
-    public array $adjustments = [
-        // Gregorian => Announced Hijri Date. All days in dd-mm-yyyy
-        '27-10-2003' => '01-09-1424',
-        '13-11-2004' => '01-10-1425',
-        '11-01-2005' => '01-12-1425',
-        '20-01-2005' => '10-12-1425',
-        '23-09-2006' => '01-09-1427',
-        '21-12-2006' => '01-12-1427',
-        '30-12-2006' => '10-12-1427',
-        '12-10-2007' => '01-10-1428',
-        '10-12-2007' => '01-12-1428',
-        '19-12-2007' => '10-12-1428',
-        '30-09-2008' => '01-10-1429',
-        '27-11-2011' => '01-09-1433',
-        '10-07-2013' => '01-09-1434',
-        '05-11-2013' => '01-01-1435',
-        '29-06-2014' => '01-09-1435',
-        '15-09-2015' => '01-12-1436',
-        '24-09-2015' => '10-12-1436',
-        '15-10-2015' => '01-01-1437',
-        '03-09-2016' => '01-12-1437',
-        '12-09-2016' => '10-12-1437',
-        '17-05-2018' => '01-09-1439',
-        '10-08-2021' => '01-01-1443',
-    ];
+    /**
+     * @var array Actual Crescent Sightings in KSA
+     */
+    public array $adjustments;
 
     /**
      * @var array|int[]|string[] Calculated from $this->adjustments in the constuctor
@@ -55,6 +35,7 @@ class HighJudiciaryCouncilOfSaudiArabia extends Calculator
         // Hijri dates don't work with DateTime, but we are just using these here to size comparison.
         $this->validHijriFrom = DateTime::createFromFormat('d-m-Y', '01-01-1356');
         $this->validHijriTo = DateTime::createFromFormat('d-m-Y', '30-12-1500');
+        $this->adjustments = Calendar::getHJCoSALunarSightings();
         $this->reverseAdjustments = array_flip($this->adjustments);
         $this->data = Astronomical::ummAlQura();
         $this->lunations = 16260;
